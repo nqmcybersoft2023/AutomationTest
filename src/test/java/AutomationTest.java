@@ -26,7 +26,14 @@ public class AutomationTest {
             By passwordLocator = By.xpath("//input[@name='password']");
             By loginButtonLocator = By.xpath("//button[contains(@class, 'orangehrm-login-button')]");
             By adminSidebarLocator = By.xpath("//ul/li/a/span[text()='Admin']");
+//            By selectElementLoacator = By.xpath("//div[@class='oxd-select-text-input' and text()='-- Select --'])[1]");
+            By selectFirstLocator = By.xpath("//div[contains(@class,'oxd-grid-item') and div/div/label[text()='User Role']]//div[@class='oxd-select-text-input']");
+            // By selectFirstLocator = By.xpath("(//div[@class='oxd-select-text-input' and text()='-- Select --'])[1]");
+//            By adminSelectLocator = By.xpath("//div[@class='oxd-select-text-input' and text()='Admin']");
+            By adminSelectLocator = By.xpath("//div[contains(@class, 'oxd-input-group') and .//label[text()='User Role']]//div[contains(@class, 'oxd-select-text') and .//div[text()='Admin']]");
 
+
+            By ESSLocator = By.xpath("//div[@class='oxd-select-text-input' and text()='ESS']");
             // Wait for the username field to be visible
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
             wait.until(ExpectedConditions.visibilityOfElementLocated(usernameLocator));
@@ -46,7 +53,12 @@ public class AutomationTest {
             // Click the Admin menu
             WebElement adminSidebar = driver.findElement(adminSidebarLocator);
             adminSidebar.click();
-
+            WebElement Select = driver.findElement(selectFirstLocator);
+            Select.click();
+            WebElement AdminBtn = driver.findElement(adminSelectLocator);
+            AdminBtn.click();
+            WebElement ESSBtn = driver.findElement(ESSLocator);
+            ESSBtn.click();
             // Pause to observe the result (optional, for debugging only)
             Thread.sleep(2000);
 
